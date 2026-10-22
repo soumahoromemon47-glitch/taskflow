@@ -58,7 +58,9 @@ export function useTasks() {
 
   const toggleTask = useCallback((id: string) => {
     setAllTasks((previous) =>
-      previous.map((task) => (task.id === id ? { ...task, completed: !task.completed } : task)),
+      previous.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task,
+      ),
     );
   }, []);
 
@@ -81,4 +83,3 @@ export function useTasks() {
     clearCompleted,
   };
 }
-
