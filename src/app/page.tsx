@@ -21,22 +21,26 @@ export default function Home() {
   const completedCount = allTasks.length - activeCount;
 
   return (
-    <main className="max-w-xl mx-auto px-4 py-12">
-      <h1 className="text-3xl font-bold text-neutral-900 mb-8">Mes tâches</h1>
+    <main className="min-h-screen bg-stone-50 px-4 py-16 text-[15px] text-stone-900">
+      <div className="mx-auto max-w-xl">
+        <h1 className="mb-10 text-4xl font-semibold tracking-tight text-stone-900">
+          Mes tâches
+        </h1>
 
-      <TaskForm onAdd={addTask} />
+        <TaskForm onAdd={addTask} />
 
-      <div className="mt-6">
-        <TaskList
-          tasks={tasks}
-          filter={filter}
-          onFilterChange={setFilter}
-          onToggle={toggleTask}
-          onDelete={deleteTask}
-          onClearCompleted={clearCompleted}
-          activeCount={activeCount}
-          completedCount={completedCount}
-        />
+        <div className="mt-8">
+          <TaskList
+            tasks={tasks}
+            filter={filter}
+            onFilterChange={setFilter}
+            onToggle={toggleTask}
+            onDelete={deleteTask}
+            onClearCompleted={clearCompleted}
+            activeCount={activeCount}
+            completedCount={completedCount}
+          />
+        </div>
       </div>
     </main>
   );

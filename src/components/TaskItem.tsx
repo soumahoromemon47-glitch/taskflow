@@ -20,18 +20,18 @@ export default function TaskItem({ task, onToggle, onDelete }: TaskItemProps) {
   const titleId = `task-title-${task.id}`;
 
   return (
-    <li className="flex items-center gap-3 rounded-lg border border-neutral-200 bg-white px-4 py-3">
+    <li className="flex items-center gap-3 rounded-2xl border border-stone-200 bg-white px-5 py-4 shadow-sm transition-shadow hover:shadow-md">
       <input
         type="checkbox"
         checked={task.completed}
         onChange={() => onToggle(task.id)}
         aria-labelledby={titleId}
-        className="h-5 w-5 accent-neutral-900 cursor-pointer"
+        className="h-5 w-5 shrink-0 cursor-pointer rounded-md border-stone-300 accent-stone-900"
       />
       <span
         id={titleId}
         className={`flex-1 min-w-0 break-words ${
-          task.completed ? "line-through text-neutral-400" : "text-neutral-900"
+          task.completed ? "line-through text-stone-400" : "text-stone-900"
         }`}
       >
         {task.title}
@@ -40,7 +40,7 @@ export default function TaskItem({ task, onToggle, onDelete }: TaskItemProps) {
         type="button"
         onClick={() => onDelete(task.id)}
         aria-label={`Supprimer la tâche : ${task.title}`}
-        className="text-neutral-400 hover:text-red-600 transition-colors"
+        className="text-stone-400 transition-colors hover:text-red-600"
       >
         ✕
       </button>

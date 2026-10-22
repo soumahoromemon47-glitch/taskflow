@@ -58,20 +58,22 @@ export default function TaskList({
   return (
     <div>
       {tasks.length === 0 ? (
-        <p className="text-center py-12 text-neutral-400">{EMPTY_MESSAGES[filter]}</p>
+        <p className="py-16 text-center text-[15px] text-stone-400">{EMPTY_MESSAGES[filter]}</p>
       ) : (
-        <ul className="flex flex-col gap-2" aria-label="Liste des tâches">
+        <ul className="flex flex-col gap-3" aria-label="Liste des tâches">
           {tasks.map((task) => (
             <TaskItem key={task.id} task={task} onToggle={onToggle} onDelete={onDelete} />
           ))}
         </ul>
       )}
 
-      <div className="grid grid-cols-3 items-center gap-2 mt-4 text-sm text-neutral-500">
-        <span className="justify-self-start">{remainingLabel}</span>
+      <div className="mt-6 grid grid-cols-3 items-center gap-2">
+        <span className="justify-self-start text-xs uppercase tracking-wider text-stone-500">
+          {remainingLabel}
+        </span>
 
         <div
-          className="flex gap-1 justify-self-center"
+          className="flex justify-self-center gap-1"
           role="group"
           aria-label="Filtrer les tâches"
         >
@@ -85,8 +87,8 @@ export default function TaskList({
                 aria-pressed={isActive}
                 className={
                   isActive
-                    ? "rounded-md bg-neutral-900 px-3 py-1 text-white transition-colors"
-                    : "rounded-md bg-neutral-100 px-3 py-1 text-neutral-600 transition-colors hover:bg-neutral-200 hover:text-neutral-900"
+                    ? "rounded-full bg-stone-900 px-3.5 py-1.5 text-[13px] font-medium text-white transition-colors"
+                    : "rounded-full bg-transparent px-3.5 py-1.5 text-[13px] font-medium text-stone-500 transition-colors hover:bg-stone-100 hover:text-stone-900"
                 }
               >
                 {option.label}
@@ -99,7 +101,7 @@ export default function TaskList({
           <button
             type="button"
             onClick={onClearCompleted}
-            className="justify-self-end text-neutral-500 hover:text-red-600 transition-colors"
+            className="justify-self-end text-xs text-stone-500 transition-colors hover:text-red-600"
           >
             Effacer les terminées
           </button>
