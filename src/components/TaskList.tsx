@@ -21,6 +21,8 @@ interface TaskListProps {
   activeCount: number;
   /** Nombre de tâches terminées. */
   completedCount: number;
+  /** Nombre total de tâches, tous filtres confondus. */
+  totalCount: number;
 }
 
 /** Message affiché quand la liste filtrée est vide, selon le filtre courant. */
@@ -50,15 +52,35 @@ export default function TaskList({
   onClearCompleted,
   activeCount,
   completedCount,
+  totalCount,
 }: TaskListProps) {
   // Pluriel du compteur : « 1 tâche restante » / « 3 tâches restantes ».
   const remainingLabel =
     activeCount === 1 ? "1 tâche restante" : `${activeCount} tâches restantes`;
 
+  // Nombre de tâches affiché dans chaque pastille de filtre.
+  const filterCounts: Record<TaskFilter, number> = {
+    all: totalCount,
+    active: activeCount,
+    completed: completedCount,
+  };
+
   return (
     <div>
       {tasks.length === 0 ? (
-        <p className="py-16 text-center text-[15px] text-stone-400">{EMPTY_MESSAGES[filter]}</p>
+        <div className="py-16 text-center">
+          <div className="mb-4 text-5xl" aria-hidden="true">
+            📝
+          </div>
+          <p className="text-[15px] text-stone-400">{EMPTY_MESSAGES[filter]}</p>
+          <button
+            type="button"
+            onClick={() => document.getElementById("task-input")?.focus()}
+            className="mt-3 cursor-pointer text-sm font-medium text-indigo-600 transition-colors hover:underline"
+          >
+            Ajouter une tâche
+          </button>
+        </div>
       ) : (
         <ul className="flex flex-col gap-3" aria-label="Liste des tâches">
           {tasks.map((task) => (
@@ -87,11 +109,14 @@ export default function TaskList({
                 aria-pressed={isActive}
                 className={
                   isActive
-                    ? "rounded-full bg-stone-900 px-3.5 py-1.5 text-[13px] font-medium text-white transition-colors"
+                    ? "rounded-full bg-indigo-600 px-3.5 py-1.5 text-[13px] font-medium text-white transition-colors"
                     : "rounded-full bg-transparent px-3.5 py-1.5 text-[13px] font-medium text-stone-500 transition-colors hover:bg-stone-100 hover:text-stone-900"
                 }
               >
                 {option.label}
+                <span className="ml-1 text-xs opacity-70">
+                  {filterCounts[option.value]}
+                </span>
               </button>
             );
           })}

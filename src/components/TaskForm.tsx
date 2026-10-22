@@ -45,12 +45,12 @@ export default function TaskForm({ onAdd }: TaskFormProps) {
         value={title}
         onChange={(event) => setTitle(event.target.value)}
         placeholder="Ajouter une tâche..."
-        className="flex-1 rounded-xl border border-stone-200 bg-white px-4 py-2.5 text-[15px] text-stone-900 transition-colors placeholder:text-stone-400 focus:border-stone-900 focus:outline-none focus:ring-1 focus:ring-stone-900"
+        className="flex-1 rounded-xl border border-stone-200 bg-white px-4 py-2.5 text-[15px] text-stone-900 shadow-sm transition-all hover:shadow-md placeholder:text-stone-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
       />
       <button
         type="submit"
         disabled={isEmpty}
-        className="rounded-xl bg-stone-900 px-5 py-2.5 text-[15px] font-medium text-white transition-all hover:bg-stone-800 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
+        className="rounded-xl bg-indigo-600 px-5 py-2.5 text-[15px] font-medium text-white transition-all hover:bg-indigo-700 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
       >
         Ajouter
       </button>

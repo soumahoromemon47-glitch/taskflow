@@ -22,12 +22,15 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-stone-50 px-4 py-16 text-[15px] text-stone-900">
-      <div className="mx-auto max-w-xl">
-        <h1 className="mb-10 text-4xl font-semibold tracking-tight text-stone-900">
+      <div className="mx-auto max-w-2xl">
+        <h1 className="text-5xl font-bold tracking-tighter text-stone-900">
           Mes tâches
         </h1>
+        <p className="mt-2 text-stone-500">Restez organisé, une tâche à la fois.</p>
 
-        <TaskForm onAdd={addTask} />
+        <div className="mt-8">
+          <TaskForm onAdd={addTask} />
+        </div>
 
         <div className="mt-8">
           <TaskList
@@ -39,6 +42,7 @@ export default function Home() {
             onClearCompleted={clearCompleted}
             activeCount={activeCount}
             completedCount={completedCount}
+            totalCount={allTasks.length}
           />
         </div>
       </div>
